@@ -1,0 +1,233 @@
+
+        body {margin:0;}
+    
+        .line{
+            width: 112px;
+            height: 47px;
+            border-bottom: 1px solid black;
+            position: absolute;
+            }
+            #h1i{
+              color: rgb(238, 17, 208);
+              font-size: 20px;
+              position: center;
+              bottom: 0;
+              
+            }
+                .navbar {
+                  overflow: hidden;
+                  background-color: #26262c;
+                  position: fixed;
+                  top: 0;
+                  width: 100%;
+                }
+                
+                .navbar a {
+                  float: left;
+                  display: block;
+                  color: rgb(238, 17, 208);
+                  text-align: center;
+                  padding: 14px 16px;
+                  text-decoration: none;
+                  font-size: 17px;
+                }
+                img{
+                  width: 300px;
+                  height: 140px;
+                  
+                  }
+
+                .navbar a:hover {
+                  background: rgb(119, 116, 116);
+                  color:black; 
+                }
+                
+                .main {
+                  padding: 16px;
+                  margin-top: 30px;
+                  height: 1500px; 
+                  
+                }
+        
+                #Game {
+                  color: rgb(17, 223, 238);
+                  position:absolute;
+                  bottom: 0;
+                  margin :0 auto;
+                  margin-top: 50%;
+                  font-size: 17px;
+                  text-decoration-line: unset;
+                  text-align: center;
+                  background-image:  url("white1.jpg");
+                  background-repeat: no-repeat ;
+                  background-position :center;
+                  background-size : 700px 650px ;
+                  margin:  auto;
+                  right: 310px;
+                  width: 700px;
+                  border: 2.5px solid rgb(133, 4, 83);
+                
+                 }
+                 .footer {
+                  color: rgb(238, 17, 208);
+                  position: fixed;
+                  left: 0;
+                  bottom: 0;
+                  width: 25%;
+                  background-color: rgb(0, 0, 0);
+                  color: white;
+                  text-align: center;
+               }
+            #Register {
+            color: rgb(238, 17, 208);
+            font-size: 18px;
+            font-style: italic;
+            text-decoration-line: unset;
+            text-align: center;
+            
+            }
+            #GameOver {
+              color: rgb(238, 17, 208);
+              font-size: 18px;
+              font-style: italic;
+              text-decoration-line: unset;
+              text-align: center;
+              
+              }
+            #Login {
+            color: rgb(238, 17, 208);
+            font-size: 23px;
+            text-decoration-line: unset;
+            text-align: center;
+            }
+            #Settings {
+            color: rgb(238, 17, 208);
+            font-size: 15px;
+            text-decoration-line: unset;
+            font-weight: 900;
+            text-align: center;
+            }
+            #Welcome {
+            color: rgb(238, 17, 208);
+            font-size: 23px;
+            text-decoration-line: unset;
+            text-align: center;
+                } 
+                
+                .button {
+                  display: inline-block;
+                  border-radius: 4px;
+                  border: 2px solid rgb(243, 247, 243);
+                  background-color: #d612b5;
+                  border: none;
+                  color: #FFFFFF;
+                  text-align: center;
+                  font-size: 14px;
+                  padding: 10px;
+                  width: 100px;
+                  transition: all 0.5s;
+                  cursor: pointer;
+                  margin: 5px;
+                }
+                .buttonX{
+                  width: 100px;
+                  height: 30px;
+                  display: inline-block;
+                  border-radius: 4px;
+                  border: 2px solid rgb(243, 247, 243);
+                  background-color: #d612b5;
+                  border: none;
+                  color: #FFFFFF;
+                  text-align: center;
+                  font-size: 12px;
+                  padding: 10px;
+                  transition: all 0.5s;
+                  cursor: pointer;
+                  margin: 5px;
+                }
+                .buttonY{
+                  width: 70px;
+                  height: 15px;
+                  display: inline-block;
+                  border-radius: 4px;
+                  border: 2px solid rgb(243, 247, 243);
+                  background-color: #d612b5;
+                  border: none;
+                  color: #FFFFFF;
+                  text-align: center;
+                  font-size: 12px;
+                  padding: 10px;
+                  transition: all 0.5s;
+                  cursor: pointer;
+                  margin: 5px;
+                }
+                
+                
+                .button span {
+                  cursor: pointer;
+                  display: inline-block;
+                  position: relative;
+                  transition: 0.5s;
+                }
+                
+                .button span:after {
+                  content: '\00bb';
+                  position: absolute;
+                  opacity: 0;
+                  top: 0;
+                  right: -20px;
+                  transition: 0.5s;
+                }
+                
+                .button:hover span {
+                  padding-right: 25px;
+                }
+                
+                .button:hover span:after {
+                  opacity: 1;
+                  right: 0;
+                }
+
+                body {font-family: Arial, Helvetica, sans-serif;}
+                
+               
+                .modal {
+                  display: none; 
+                  position: fixed;
+                  z-index: 1; 
+                  padding-top: 100px; 
+                  left: 0;
+                  top: 0;
+                  width: 100%; 
+                  height: 100%; 
+                  overflow: auto; 
+                  background-color: rgb(0,0,0); 
+                  background-color: rgba(0,0,0,0.4); 
+                }
+                
+                /* Modal Content */
+                .modal-content {
+                  background-color: #fefefe;
+                  margin: auto;
+                  padding: 20px;
+                  border: 1px solid #888;
+                  width: 80%;
+                }
+                
+                /* The Close Button */
+                .close {
+                  color: #f3eded;
+                  float: right;
+                  font-size: 28px;
+                  font-weight: bold;
+                }
+                
+                .close:hover,
+                .close:focus {
+                  color: #000;
+                  text-decoration: none;
+                  cursor: pointer;
+                }
+
+
+   

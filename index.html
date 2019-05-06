@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+        <link rel="stylesheet" href="work_1.css">
+<head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <style type="text/css">
+            body {
+                background:url(background.jpg) #A98436 repeat left top;
+                background-size: 99%;
+            
+            }
+            
+            </style>
+    <script src="script.js"></script>
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/additional-methods.js"></script>
+ 
+    
+
+
+</script>
+
+
+<script> 
+     $.validator.setDefaults({
+     submitHandler: function () {
+        manegeSettings();
+     }
+     
+      });
+      $.validator.addMethod('mypassword', function(value, element) {
+        return this.optional(element) || (value.match(/[a-zA-Z]/) && value.match(/[0-9]/));
+    },
+    'Password must contain at least one numeric and one alphabetic character.');
+     $().ready(function () {
+     // validate reg form on keyup and submit
+     $("#reg").validate({
+        rules: {
+        firstname: "required",
+        lastname: "required",
+        username: {
+            required: true,
+            minlength: 2
+         },
+        password: {
+            required: true,
+            minlength: 8,
+            mypassword: true,
+  
+        },
+        email: {
+            required: true,
+            email: true
+        },
+        bday: {
+            required: true,
+        },
+        },
+        messages: {
+            firstname: "Please enter your firstname",
+            lastname: "Please enter your lastname",
+                 username: {
+                         required: "Please enter a username",
+                         minlength: "Your username must consist of at least 2 characters"
+                 },
+                 password: {
+                         required: "Please provide a password",
+                         minlength: "Your password must be at least 8 characters long",
+                         Pattern: "the password must contain numbers and characters"
+                 },
+
+                 email: "Please enter a valid email address",
+                 bday: "Please enter a valid B-Day",
+                 }
+        })    
+         });
+        </script>
+
+
+ 
+
+
+
+
+
+
+
+
+</head >
+
+
+<body>
+    <div class="navbar">
+            <a onclick = "manegeWelcome()">Welcome</a>
+            <a onclick="manegeRegistration()">Register   </a>
+            <a  onclick="manegeLogin()" >Login   </a>
+            <a id = "About1" onclick = "AboutPopUp()"  >About</a>
+            <p id = "p2"  position:fixed style="position:fixed; top:0px;right:14px; color: rgb(238, 17, 208);">  Hello, Guest </p>
+            <p id ="p1"  position:fixed style="position:fixed; top:0px;right:14px; display: none; color: rgb(238, 17, 208);"> <b></b></p>
+            <label position:fixed style="position:relative; float: left; top:11px;font-size: 17px; color: rgb(238, 17, 208);" >Score:   </labal>
+            <input id="lblScore" type="text" position:fixed style="position:relative; top:0px; color: rgb(238, 17, 208);"/> 
+            <label  >Time:</label><input id="lblTime"  type="text"position:fixed  style="position:relative; font-size: 17px; top:0px; color: rgb(238, 17, 208);"/>
+            <label  >Lifes:</label><input id="lblLife" type="text" position:fixed style="position:relative; top:0px; color: rgb(238, 17, 208);"/>
+            <img src="PacLogo.png" width="400" height="150" position:fixed style="position:fixed; top:30px;border-bottom-right-radius: 15%;border-top-right-radius: 15%;left:0px;">
+    </div>
+    <div id="myAbout" class="modal"   >
+
+            <!-- Modal content -->
+            <div class="modal-content" >
+              <span class="close">&times;</span>
+              <p>submutting:<b> Tommy</b> Goldenberg and<b> Idan </b> Shani.<br> <br>
+                1. The use of jQuery is done when a new user signs up on the system, and <br>validation is based on the conditions we were asked to answer in creating the work. <br>
+                <br> 2. The difficulties encountered during the course of the work are: <br> <br> A. Ability to debug the game scripts. <br> B. Ability to move the characters according to the instructions and game highlights. <br> 
+               <br> Thank you very much for playing our game!</p> 
+            </div>
+          
+          </div>
+          <div id="Game"  class="Game" style="display : none"  >
+        
+
+        
+        <canvas id="canvas" height="600" width="600" ></canvas>        
+        <script type="text/javascript">
+            var context = canvas.getContext("2d");
+            var shape = new Object();
+            var board;
+            var score;
+            var pac_color;
+            var start_time;
+            var time_elapsed;
+            var interval;
+            
+            
+        </script>
+    </div>
+
+
+        <div id="Welcome">
+                <h1>
+                    
+                    <center>
+                        <br><br>
+                            Welcome To Pacman Game:<br>
+                    <button class="button" style="vertical-align:middle" onclick="manegeLogin()" ><span>Login </span></button><br>
+                    <button class="button" style="vertical-align:middle" onclick="manegeRegistration()" ><span>Register </span></button>
+                    </center>
+                </h1>    
+                    <br>
+        </div>
+
+<div id="Settings"style="display : none ">
+    <center>
+            <br><br>
+            <h1> Choose your Game settings</h1><br>
+            <b>Controllers:</b><br>
+            Up bottun:
+            <button id="ArrowUp1" class="bottun buttonX" value="button" type="button" onkeydown="submitKeySettings('up',event)"> Up Arrow </button><br>
+            Down bottun:
+            <button id="ArrowDown1" class="bottun buttonX" value="button" type="button" onkeydown="submitKeySettings('down',event)"> Down Arrow </button><br>
+            Left bottun:
+            <button id="ArrowLeft1"  class="bottun buttonX" value="button" type="button" onkeydown="submitKeySettings('left',event)"> Left Arrow </button><br>
+            Rigth bottun:
+            <button id="ArrowRight1" class="bottun buttonX" value="button" type="button" onkeydown="submitKeySettings('rigth',event)"> Right Arrow </button><br>
+            
+            
+            Amount of balls(50-90):<br>
+            <input type="text" name="numOfBalls" value="50">
+            <br>
+           
+            5 Points Balls color:
+            <input type="color" name="5ptsC" class="bottun buttonY" value="#cc0099"><br>
+            15 Points Balls color:
+            <input type="color" name="15ptsC" class="bottun buttonY" value="#00cc00"><br>
+            25 Points Balls color:
+            <input type="color" name="25ptsC" class="bottun buttonY" value="#000000"><br>
+            Game-Time(sec, min-60): <br>
+            <input type="text" name="gameTime" value="60"><br>
+            Amount of Monsters:(1-3) <br>
+            <input type="text" name="numofmonsters" value="3"><br>
+            
+            <button class="button" style="vertical-align:middle" onclick="randomSettings()" ><span>Random </span></button>
+            <button class="button" style="vertical-align:middle" onclick="checkSettings()" ><span>Submit </span></button>
+
+    </center>    
+</div>
+
+
+
+
+
+
+<div id="Login" style="display : none ">
+        <center>
+            <br><br>
+        <h1>LOGIN</h1>
+        
+        
+            User name:<br>
+            <input type="text" name="username1">
+            <br>
+            <br>
+            Password:<br>
+            <input type="text" name="password1">
+            <br>
+            <br>
+            
+            <button class="button" style="vertical-align:middle" onclick="manegeTtyLogin()" ><span>Submit </span></button>
+            <br>
+        </center>
+
+</div>
+
+
+<div id= "Register" style="display : none ">
+        <center>
+            <br><br>
+        <h1>REGISTER</h1>
+        <br>
+        
+        <form   id="reg"  action="/action_page.php">
+            User name:<br>
+            <input type="text" name="username">
+            <br>
+            <br>
+            Password:<br>
+            <input type="password" name="password">
+            <br>
+            <br>
+            First name:<br>
+            <input type="text" name="firstname" >
+            <br>
+            <br>
+            Last name:<br>
+            <input type="text" name="lastname" >
+            <br>
+            <br>
+            Email:<br>
+            <input type="text" name="email">
+            <br>
+            <br>
+            Birthday:<br>
+            <input type="date" name="bday">
+            <br>
+            <br>
+            <button class="button" type="submit" style="vertical-align:middle"  ><span>Submit </span></button>
+            <br>   
+        </form>
+    </center>
+</div>
+
+<div id="myAbout" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+
+  </div>
+
+</div>
+<div id="GameOver" style="display : none ">
+        <br><br><br>
+        <p> <b> Game Over!</b></p><br>
+        <p id ="p66" > <b></b></p>
+        <button class="button" style="vertical-align:middle" onclick="manegeGame()">Restart Game</button><br>
+        <button class="button" style="vertical-align:middle" onclick="AfterGame_Welcome()">Maybe Later..</button>
+
+</div>
+
+<script>
+var modal = document.getElementById('myAbout');
+var btn = document.getElementById("About1");
+var span = document.getElementsByClassName("close")[0];
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+span.onclick = function() {
+  modal.style.display = "none";
+}
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+window.onkeydown = function( event ) {
+    if ( event.keyCode == 27 ) {
+        modal.style.display = "none";
+    }
+};
+</script>
+<footer class="footer">
+  
+  <p>Contact information: <a href="mailto:idsh@post.bgu.ac.il" style ="color: rgb(238, 17, 208);">idsh@post.bgu.ac.il</a>.</p>
+</footer>
+</body>
+</html>
