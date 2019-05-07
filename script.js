@@ -407,10 +407,11 @@ function restoreSettings(){
 
             keysDown = {};
             addEventListener("keydown", function (e) {
-                keysDown[e.code] = true;
+
+                keysDown[e.which] = true;
             }, false);
             addEventListener("keyup", function (e) {
-                keysDown[e.code] = false;
+                keysDown[e.which] = false;
             }, false);
             interval = setInterval(UpdatePosition, 120);
         }
@@ -428,16 +429,17 @@ function restoreSettings(){
          * @return {number}
          */
         function GetKeyPressed() {
-            if (keysDown['ArrowUp']) {
+
+            if (keysDown[ArrowUp]) {
                 return 1;
             }
-            if (keysDown['ArrowDown']) {
+            if (keysDown[ArrowDown]) {
                 return 2;
             }
-            if (keysDown['ArrowLeft']) {
+            if (keysDown[ArrowLeft]) {
                 return 3;
             }
-            if (keysDown['ArrowRight']) {
+            if (keysDown[ArrowRight]) {
                 return 4;
             }
             else{
